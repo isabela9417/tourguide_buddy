@@ -2,9 +2,7 @@
 
 :root {
     --babyBlue: #5caace;
-    --chocolate: #7B3F00;
     --white: #FFFFFF;
-    --grey: #4e4e4e;
     --black: #000000;
 }
 
@@ -52,8 +50,10 @@ section {
 }
 header {
     position: fixed;
-    top: 0; left: 0; right: 0;
-    background: #4e4e4e;
+    top: 0; 
+    left: 0; 
+    right: 0;
+    background: var(--black);
     z-index: 1000;
     display: flex;
     align-items: center;
@@ -86,25 +86,9 @@ header .icons i {
     cursor: pointer;
     margin-right: 2rem;
 }
-    
-#dark-mode {
-    display: none; 
-}
 
 header .icons i:hover {
     color: var(--babyBlue);
-}
-
-header .search-bar-container {
-    position: absolute;
-    top: 100%; left: 0; right: 0;
-    padding: 1.5rem 2rem;
-    background: var(--grey);
-    border-top: .1rem solid rgba(255,255,255,.2);
-    display: flex;
-    align-items: center;
-    z-index: 1001;
-    
 }
 
 #menu-bar {
@@ -116,7 +100,7 @@ header .search-bar-container {
     cursor: pointer;
     display: none;
 }
-
+/* home section  */
 .home {
     min-height: 100vh;
     display: flex;
@@ -126,6 +110,7 @@ header .search-bar-container {
     position: relative;
     z-index: 0;
 }
+
 .home span {
     color: var(--babyBlue);
     text-transform: uppercase;
@@ -133,6 +118,20 @@ header .search-bar-container {
 .home .content {
     text-align: center;
 }
+
+.home .content h3 {
+    font-size: 4.5rem;
+    color: var(--white);
+    text-transform: uppercase;
+    text-shadow: 0 .3rem .5rem rgba(0,0,0,.1);
+}
+
+.home .content p {
+    font-size: 2.5rem;
+    color: var(--white);
+    padding: .5rem 0;
+}
+
 .home .search-bar-container {
     position: absolute;
     top: 60%;
@@ -150,7 +149,6 @@ header .search-bar-container {
 
 .home .search-bar-container #search-bar {
     width: 100%;
-    max-width: 100%;
     padding: 1rem;
     color: var(--grey);
     font-size: 1.7rem;
@@ -169,59 +167,32 @@ header .search-bar-container {
     color: var(--babyBlue);
 }
 
-
-.home .content h3 {
-    font-size: 4.5rem;
-    color: var(--white);
-    text-transform: uppercase;
-    text-shadow: 0 .3rem .5rem rgba(0,0,0,.1);
-}
-
-.home .content p {
-    font-size: 2.5rem;
-    color: var(--white);
-    padding: .5rem 0;
-}
-
-.video-container video {
+.home .video-container video {
     position: absolute;
-    top: 0; left: 0;
+    top: 0; 
+    left: 0;
+    z-index: -1;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: none;
 }
 
-.home .controls {
-    padding: 1rem;
-    border-radius: 5rem;
-    background: rgba(0, 0, 0, .7);
-    position: absolute;
-    bottom: 20px; /* Adjust if needed */
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1;
+/* gallery section */
+
+.heading {
+    font-size: 3.5rem;
+    text-align: center;
+    padding: 1.5rem 0;
 }
 
-.home .controls .vid-btn {
-    height: 2rem;
-    width: 2rem;
-    display: inline-block;
-    border-radius: 50%;
-    background: var(--white);
-    cursor: pointer;
-    margin: 0 .5rem;
-}
-
-.home .controls .vid-btn.active {
-    background: var(--babyBlue);
+.heading span {
+    color: var(--black);
 }
 
 
 
 
-
-/* make the app to resize for different screens */
+/* media queries */
 @media (max-width: 1200px) {
     html {
         font-size: 55%;
@@ -245,7 +216,9 @@ header .search-bar-container {
 
     header .navbar {
         position: absolute;
-        top: 100%; right: 0; left: 0;
+        top: 100%; 
+        right: 0; 
+        left: 0;
         background: var(--grey);
         border-top: .1rem solid rgba(255,255,255,.2);
         padding: 1rem 2rem;
@@ -260,7 +233,7 @@ header .search-bar-container {
         display: block;
         border-radius: .5rem;
         padding: 1.5rem;
-        margin: 1.5rem;
+        margin: 1.5rem 0;
         background: var(--black);
     }
 
