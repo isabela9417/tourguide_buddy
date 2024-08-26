@@ -22,8 +22,10 @@
 </head>
 <body>
 	<header>
-		<!-- for menu bar on smaller screens -->
-		<div id="menu-bar" class='bx bx-menu icons'></div>
+		<!-- icons -->
+		<div class='icons'>
+			<i class='bx bx-menu' id="menu-bar"></i>
+		</div>
 		<!-- the navigation bar -->
 		<a href="#home" class="logo"><span>T</span>ravelling <span>T</span>our <span>G</span>uide</a>
 		<nav class="navbar">
@@ -33,8 +35,33 @@
 			<a href="#reviews">reviews</a>
 			<a href="#contact">contact</a>
 		</nav>
+		<!-- icons -->
+		<div class='icons'>
+			<i class='bx bxs-user-circle' id="login-btn"></i>
+		</div>
+		
 	</header>
-	
+
+
+	<!-- login form container -->
+	<div class="login-form-container">
+
+		<i class='bx bx-x' id="form-close"></i>
+
+		<form action="action">
+			<h3>Login</h3>
+			<input type="email" class="box" placeholder="Enter your email">
+			<input type="password" class="box" placeholder="Enter your password">
+			<input type="submit" value="login now" class="btn">
+			<input type="checkbox" id="remember">
+			<label for="remember">Remember me</label>
+			<p>Forgot password? <a href="">click here</a></p>
+			<p>Don't have an account? <a href="">Register now</a></p>
+		</form>
+	</div>
+	<!-- End of the login form -->
+
+
 	<!-- home section begins -->
 		<section class="home" id="home">
 			<div class="content">
@@ -59,12 +86,95 @@
 			</div>
 		</section>
 	<!-- home section end -->
-	<!-- galeery section begins -->
-		<section class="gallery" id="gallery">
-			<h1 class="heading"></h1>Places<span> South Africa</span> is known for...</h1>
-		</section>
 
-	 <!-- gallery section end -->
+
+	<!-- gallary section begins -->
+		<section class="gallery" id="gallery">
+			<div class="heading">
+				<h1>Most Visited <span>Places</span></h1>
+			</div>
+			<div class="box-container">
+				<div class="box">
+					<img src="images/Kruger National.jpg" alt="">
+					<div class="content">
+						<h3><i class='bx bx-map'></i> Kruger National Park</h3>
+						<p>Between Limpopo and Mpumalanga</p>
+						<div class="stars">
+							<i class='bx bx-star' ></i>
+							<i class='bx bx-star' ></i>
+							<i class='bx bx-star' ></i>
+							<i class='bx bx-star' ></i>
+							<i class='bx bx-star' ></i>
+							<div class="price">R <span>486.00</span></div>
+							<a href="#" class="btn">More Info</a>
+						</div>
+					</div>
+				</div>
+				<div class="box">
+					<img src="images/Boulders Beach.jpg" alt="">
+					<div class="content">
+						<h3><i class='bx bx-map'></i> Boulders Beach</h3>
+						<p>Western Cape</p>
+						<div class="stars">
+							<i class='bx bx-star' ></i>
+							<i class='bx bx-star' ></i>
+							<i class='bx bx-star' ></i>
+							<i class='bx bx-star' ></i>
+							<i class='bx bx-star' ></i>
+							<div class="price">R <span>486.00</span></div>
+							<a href="#" class="btn">More Info</a>
+						</div>
+					</div>
+				</div>
+				<div class="box">
+					<img src="images/uShaka Marine World.jpg" alt="">
+					<div class="content">
+						<h3><i class='bx bx-map'></i> Ushaka Marine World</h3>
+						<p>KwaZulu-Natal</p>
+						<div class="stars">
+							<i class='bx bx-star' ></i>
+							<i class='bx bx-star' ></i>
+							<i class='bx bx-star' ></i>
+							<i class='bx bx-star' ></i>
+							<i class='bx bx-star' ></i>
+							<div class="price">R <span>486.00</span></div>
+							<a href="#" class="btn">More Info</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	<!-- gallery section end -->
+
+
+	<!-- services section starts -->
+	
+	<section class="services" id="services">
+		<div class="heading">
+			<h1>Travelling Tour guide <span>Services</span></h1>
+		</div>
+
+		<div class="box-container">
+			<div class="box">
+				<i class='bx bx-hotel' ></i>
+				<h3>Accomodation</h3>
+				<p>To ease your search for accomodations, we collected South africa's most hotels and houses for you to look for the one you can afford and suitable for you</p>
+			</div>
+		</div>
+		<div class="box-container">
+			<div class="box">
+				<i class='bx bx-hotel' ></i>
+				<h3>Accomodation</h3>
+				<p>To ease your search for accomodations, we collected South africa's most hotels and houses for you to look for the one you can afford and suitable for you</p>
+			</div>
+		</div>
+	</section>
+
+
+
+	<!-- services section ends -->
+
+
 </body>
 
 	<!-- custom js file link -->

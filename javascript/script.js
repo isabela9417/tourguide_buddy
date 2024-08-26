@@ -3,18 +3,32 @@ const menu = document.querySelector('#menu-bar');
 const navbar = document.querySelector('.navbar');
 // video display
 const videoBtn = document.querySelectorAll('.vid-btn');
+// login form
+const formBtn = document.querySelector('#login-btn');
+const loginForm = document.querySelector('.login-form-container');
+const formClose= document.querySelector('#form-close');
 
-//
+// Removing active classes
+window.onscroll = () => {
+    menu.classList.remove('bx-x');
+    navbar.classList.remove('active');
+    loginForm.classList.remove('active');
+};
+
+// switch from x to menu bar
 menu.addEventListener('click', () => {
     menu.classList.toggle('bx-x');
     navbar.classList.toggle('active');
 });
+// closing and opening the login form
+formBtn.addEventListener('click', () => {
+    loginForm.classList.add('active');
+});
 
-// Removing active classes on scroll
-window.onscroll = () => {
-    menu.classList.remove('bx-x');
-    navbar.classList.remove('active');
-};
+formClose.addEventListener('click', () => {
+    loginForm.classList.remove('active');
+});
+
 
 // videos on auto-play for 5s
     // Array of video sources
