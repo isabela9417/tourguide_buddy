@@ -65,3 +65,21 @@ formClose.addEventListener('click', () => {
         console.error('Video or caption element not found');
     }
 
+    // rate us section
+    document.getElementById('rating-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the form from submitting the traditional way
+    
+        const rating = document.querySelector('input[name="rating"]:checked');
+        const ratingMessage = document.getElementById('rating-message');
+    
+        if (rating) {
+            const ratingValue = rating.value;
+            ratingMessage.textContent = `Thank you for rating us ${ratingValue} star${ratingValue > 1 ? 's' : ''}!`;
+            ratingMessage.style.color = 'green';
+        } else {
+            ratingMessage.textContent = 'Please select a rating before submitting.';
+            ratingMessage.style.color = 'red';
+        }
+    });
+    
+

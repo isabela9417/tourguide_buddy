@@ -40,7 +40,8 @@ section {
     font-size: 3.5rem;
     text-align: center;
     padding: 2.5rem 0;
-    
+    top: 5rem;
+    bottom: 5rem; 
 }
 
 .heading span {
@@ -273,58 +274,187 @@ header .icons i:hover {
     object-fit: cover;
 }
 
+/* services section */
+.services .box-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+.services .box-container .box {
+    background: var(--white); 
+    padding: 1rem;
+    border-radius: .5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center; 
+    transition: transform 0.3s;
+}
+
+.services .box-container .box i {
+    padding: 1rem;
+    font-size: 5rem;
+    color: var(--babyBlue);
+}
+
+.services .box-container .box h3 {
+    font-size: 2.5rem;
+    color: var(--black);
+}
+
+.services .box-container .box p {
+    font-size: 1.5rem;
+    color: var(--grey);
+}
+
+.services .box-container .box:hover {
+    transform: scale(1.05);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, .4);
+}
+
+
 /* gallery section */
 .gallery .box-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 2rem;
+    gap: 1.5rem;
 }
 
 .gallery .box-container .box {
     flex: 1 1 30rem;
+    border: 1rem solid var(--white);
     border-radius: .5rem;
     overflow: hidden;
-    box-shadow: 0 1rem 2rem rgba(0, 0, 0, .1);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, .2);
+    position: relative;
 }
 
 .gallery .box-container .box img {
-    height: 35rem;
-    width: 28rem;
+    height: 100%;
+    width: 100%;
     object-fit: cover;
 }
 
 .gallery .box-container .box .content {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    background: rgba(0, 0, 0, .7);
     padding: 2rem;
+    padding-top: 25rem;
 }
-
+.gallery .box-container .box:hover .content {
+    top: 0;
+}
 .gallery .box-container .box .content h3 {
-    font-size: 2rem;
-    color: var(--black);
+    font-size: 2.5rem;
+    color: var(--babyBlue);
 }
 
 .gallery .box-container .box .content h3 i {
-    color: var(--babyBlue);
+    color: var(--grey);
 }
 
 .gallery .box-container .box .content p {
     font-size: 1.7rem;
+    color: var(--white);
+    padding: .5rem 0;
+}
+
+/* rate us section and reviews*/
+/* reviews */
+.reviews .reviews-slider {
+    padding-bottom: 2rem;
+}
+
+
+.reviews .box {
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, .4);
+    border-radius: .5rem;
+}
+
+.reviews .box img {
+    height: 15rem;
+    width: 15rem;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+.reviews .box h3 {
     color: var(--black);
+    font-size: 2.5rem;
+}
+
+.reviews .box p {
+    color: var(--grey);
+    font-size: 1.5rem;
     padding: 1rem 0;
 }
 
-.gallery .box-container .box .content .stars i {
-    font-size: 1.7rem;
-    color: var(--babyBlue);
+/* rate us */
+.rate-us {
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    background: var(--babyBlue);
 }
 
-.gallery .box-container .box .content .stars .price {
+.rate-us .heading h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.rating-container {
+    display: inline-block;
+}
+
+.star-rating {
+    direction: rtl;
     font-size: 2rem;
-    color: var(--black);
-    padding-top: 1rem;
+    unicode-bidi: bidi-override;
 }
 
-.gallery .box-container .box .content .stars .price span {
+.star-rating input[type="radio"] {
+    display: none;
+}
 
+.star-rating label {
+    color: var(--black);
+    cursor: pointer;
+    display: inline-block;
+}
+
+.star-rating input:checked ~ label {
+    color: #f5c518; 
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: #f5c518;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border: none;
+    background-color: var(--babyBlue);
+    color: var(--black);
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#rating-message {
+    margin-top: 10px;
+    font-size: 16px;
 }
 
 
@@ -361,6 +491,7 @@ header .icons i:hover {
     section {
         padding: 2rem;
     }
+    
 }
 
 @media (max-width: 768px) {
