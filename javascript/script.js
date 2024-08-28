@@ -65,7 +65,7 @@ formClose.addEventListener('click', () => {
         console.error('Video or caption element not found');
     }
 
-    // rate us section
+    // rate us form
     document.getElementById('rating-form').addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent the form from submitting the traditional way
     
@@ -81,5 +81,28 @@ formClose.addEventListener('click', () => {
             ratingMessage.style.color = 'red';
         }
     });
-    
+
+
+    // review slider
+    var swiper = new Swiper(".reviews-slider", {
+        spaceBetween: 20,
+        loop: true,
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: true,
+        },
+        breakpoints: {
+            640: {
+                slidesPerView: 1,
+            },
+            768: {
+                slidesPerView: 2,
+            },
+            1024: {
+                slidesPerView: 3,
+            },
+        },
+        
+    });
+
 

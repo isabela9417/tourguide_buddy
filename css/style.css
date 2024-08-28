@@ -4,7 +4,7 @@
     --babyBlue: #5caace;
     --white: #FFFFFF;
     --black: #000000;
-    --grey: #808080;
+    --grey: #bbb8b8;
     --blue: #0c1ec0e1;
 }
 
@@ -271,6 +271,8 @@ header .icons i:hover {
     z-index: -1;
     width: 100%;
     height: 100%;
+    padding: 0;
+    margin: 0;
     object-fit: cover;
 }
 
@@ -278,7 +280,9 @@ header .icons i:hover {
 .services .box-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 2rem;
+    margin-bottom: 15rem;
+    margin-top: 15rem
 }
 .services .box-container .box {
     background: var(--white); 
@@ -313,6 +317,7 @@ header .icons i:hover {
 
 /* gallery section */
 .gallery .box-container {
+    margin-top: 5rem;
     display: flex;
     flex-wrap: wrap;
     gap: 1.5rem;
@@ -363,9 +368,10 @@ header .icons i:hover {
 }
 
 /* rate us section and reviews*/
-/* reviews */
+
 .reviews .reviews-slider {
-    padding-bottom: 2rem;
+    margin-bottom: 15rem;
+    margin-top: 5rem
 }
 
 
@@ -400,12 +406,12 @@ header .icons i:hover {
     width: 100%;
     padding: 20px;
     text-align: center;
-    background: var(--babyBlue);
+    /* background: var(--babyBlue); */
 }
 
 .rate-us .heading h1 {
     margin-bottom: 20px;
-    font-size: 24px;
+    font-size: 2.5rem;
 }
 
 .rating-container {
@@ -418,62 +424,152 @@ header .icons i:hover {
     unicode-bidi: bidi-override;
 }
 
+#rating-message{
+    font-size: 1.5rem;
+    color: var(--black);
+}
 .star-rating input[type="radio"] {
     display: none;
 }
 
 .star-rating label {
-    color: var(--black);
-    cursor: pointer;
+    position: relative;
     display: inline-block;
+    font-size: 2rem;
+    color: var(--grey);
+    cursor: pointer;
 }
 
-.star-rating input:checked ~ label {
-    color: #f5c518; 
+.star-rating label:before {
+    content: "★";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--grey);
+}
+
+.star-rating input:checked ~ label:before {
+    color: var(--babyBlue);
 }
 
 .star-rating label:hover,
 .star-rating label:hover ~ label {
-    color: #f5c518;
+    color: var(--babyBlue);
 }
 
-button {
-    margin-top: 10px;
-    padding: 10px 20px;
-    border: none;
-    background-color: var(--babyBlue);
+.star-rating input:checked ~ label:before {
+    color: var(--babyBlue);
+}
+
+/* contact us page */
+.contact .heading {
+    margin-bottom: 10rem;
+}
+.contact .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.contact .row .image {
+    flex: 1 1 35rem;
+}
+
+.contact .row .image img {
+    width: 100%;
+    margin-left: -3rem;
+}
+
+.contact .row form {
+    flex: 1 1 50rem;
+    padding: 2rem;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, .5);
+    border-radius: .5rem;
+    border: .2rem solid var(--babyBlue);
+}
+
+.contact .row form .inputBox {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.contact .row form .inputBox input, 
+.contact .row form textarea {
+    width: 49%;
+    margin: 1rem 0;
+    padding: 1rem;
+    font-size: 1.7rem;
+    color: var(--black); 
+    background: var(--grey);
+    text-transform: none;
+    border: .2rem solid var(--white); 
+    border-radius: .2rem; 
+}
+
+.contact .row form textarea {
+    height: 15rem;
+    resize: none;
+    width: 100%;
+    background: var(--grey);
     color: var(--black);
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
+    border: .2rem solid var(--white); 
 }
 
-button:hover {
-    background-color: #0056b3;
+/* footer section */
+.footer {
+    background: var(--black);
+}
+.footer .box-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
 }
 
-#rating-message {
-    margin-top: 10px;
-    font-size: 16px;
+.footer .box-container .box {
+    padding: 1rem 0;
+    flex: 1 1 25rem;
 }
 
+.footer .box-container .box h3 {
+    font-size: 2.5rem;
+    padding: .7rem 0;
+    color: var(--white);
+}
 
+.footer .box-container .box p {
+    font-size: 1.5rem;
+    padding: .7rem 0;
+    color: var(--white);
+}
 
+.footer .box-container .box a {
+    display: block;
+    font-size: 1.5rem;
+    padding: .7rem 0;
+    color: var(--white);
+}
 
+.footer .box-container .box a:hover {
+    color: var(--babyBlue);
+    text-decoration: underline;
+}
 
+.footer .credit {
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: 2rem;
+    font-size: 2rem;
+    font-weight: normal;
+    color: var(--white);
+    border-top: .1rem solid rgba(255, 255, 255, .2);
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
+.footer .credit span{
+    color: var(--babyBlue);
+}
 
 
 /* media queries */
@@ -527,7 +623,7 @@ button:hover {
         top: 65%;
         left: 50%; 
         transform: translateX(-50%);
-        width: 90%;
+        width: 60%;
         margin-top: 0; 
         padding: 15px;
     }
@@ -540,5 +636,39 @@ button:hover {
     .heading {
         font-size: 2.5rem;
     }
+    .contact .row form .inputBox input {
+        width: 100%;
+    }
+    .home .video-container{
+        width: 100%;
+    }
     
 }
+/* Ensure that the video container and video element are properly set to 100% width */
+@media (max-width: 350px) {
+    html {
+        font-size: 50%;
+    }
+    
+    .heading {
+        font-size: 2.5rem;
+    }
+    
+    .contact .row form .inputBox input {
+        width: 100%;
+    }
+    
+    .home .video-container {
+        width: 100%;
+        padding: 0;
+        margin: 0; 
+    }
+    
+    .home .video-container video {
+        width: 100%; 
+        height: auto;
+        display: block;
+    }
+}
+
+
