@@ -1,0 +1,304 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Izzy TravelGuide</title>
+
+	<!-- swiper css link -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+	<!-- font awesome boxicons link -->
+	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+	<!-- custom css file link -->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<!-- swiperjs link -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+
+</head>
+<body>
+	<header>
+		<!-- icons -->
+		<div class='icons'>
+			<i class='bx bx-menu' id="menu-bar"></i>
+		</div>
+		<!-- the navigation bar -->
+		<a href="#home" class="logo"><span>T</span>ravelling <span>T</span>our <span>G</span>uide</a>
+		<nav class="navbar">
+			<a href="#home">home</a>
+			<a href="#gallery">gallery</a>
+			<a href="#services">services</a>
+			<a href="#reviews">reviews</a>
+			<a href="#contact">contact</a>
+		</nav>
+		<!-- icons -->
+		<div class='icons'>
+			<i class='bx bxs-user-circle' id="login-btn"></i>
+		</div>
+		
+	</header>
+
+
+	<!-- login form container -->
+	<div class="login-form-container">
+
+		<i class='bx bx-x' id="form-close"></i>
+		<form action="action">
+			<h3>Login</h3>
+			<input type="email" class="box" placeholder="Enter your email">
+			<input type="password" class="box" placeholder="Enter your password">
+			<input type="submit" value="login now" class="btn">
+			<input type="checkbox" id="remember">
+			<label for="remember">Remember me</label>
+			<p>Forgot password? <a href="">click here</a></p>
+			<p>Don't have an account? <a href="">Register now</a></p>
+		</form>
+	</div>
+	<!-- End of the login form -->
+
+	<!-- home section begins -->
+		<section class="home" id="home">
+			<div class="content">
+				<h3>Nature is our pride in <span>South Africa</span></h3>
+				<p>Search for your destination, as it awaits you...</p>
+			</div>
+
+			<!-- the container i -->
+			<div class="video-container">
+				<video src="{% static 'videos/457446_South Africa_Africa_1920x1080.mp4' %}" type="video/mp4" id="video-slider" loop autoplay muted></video>
+				<form action="" class="search-bar-container">
+					<input type="search" id="search-bar" placeholder="Search Here...">
+					<label for="search-bar" class="bx bx-search-alt-2"></label>
+				</form>
+			</div>
+		</section>
+	<!-- home section end -->
+
+	<!-- gallary section begins -->
+		<section class="gallery" id="gallery">
+			<div class="heading">
+				<h1>Ga<span>llery</span></h1>
+			</div>
+			<div class="box-container">
+				<div class="box">
+					<img src="{% static 'images/Kruger National.jpg' %}" alt="">
+					<div class="content">
+						<h3><i class='bx bx-map'></i> Name of the site here</h3>
+						<p>Province goes here</p>
+						<a href="#" class="btn">More Info</a>
+					</div>
+				</div>
+				<div class="box">
+					<img src="{% static 'images/Boulders Beach.jpg' %}" alt="">
+					<div class="content">
+						<h3><i class='bx bx-map'></i> Name of the site here</h3>
+						<p>Province goes here</p>
+						<a href="#" class="btn">More Info</a>
+					</div>
+				</div>
+				<div class="box">
+					<img src="{% static 'images/uShaka Marine World.jpg' %}" alt="">
+					<div class="content">
+						<h3><i class='bx bx-map'></i> Name of the site here</h3>
+						<p>Province goes here</p>
+						<a href="#" class="btn">More Info</a>
+					</div>
+				</div>
+				<div class="box">
+					<img src="{% static 'images/Sun City Resort.jpg' %}" alt="">
+					<div class="content">
+						<h3><i class='bx bx-map'></i> Name of the site here</h3>
+						<p>Province goes here</p>
+						<a href="#" class="btn">More Info</a>
+					</div>
+				</div>
+			</div>
+		</section>
+	<!-- gallery section end -->
+
+	<!-- services section starts -->
+	<section class="services" id="services">
+		<div class="heading">
+			<h1>Our <span>Services</span></h1>
+		</div>
+
+		<div class="box-container">
+			<div class="box">
+				<i class='bx bx-hotel'></i>
+				<h3>Affordable hotels.</h3>
+				<p>To ease your search for accomodations, we collected South africa's most hotels and houses for you to look for the one you can afford and suits you</p>
+			</div>
+			<div class="box">
+				<i class='bx bx-restaurant'></i>
+				<h3>restaurants.</h3>
+				<p>Help you find restaurants that serves both South African and modern food, 
+					including drinks depending on your choice. We got you</p>
+			</div>
+			<div class="box">
+				<i class='bx bx-car'></i>
+				<h3>Cars for rental.</h3>
+				<p>Travelling can be difficutls, we can easily find you car to rent from various car renting companies in the province you choose to visit.</p>
+			</div>
+			<div class="box">
+				<i class='bx bx-directions'></i>
+				<h3>safe tours.</h3>
+				<p>Tell us what you want to do and we'll give you the information you need on a click. </p>
+			</div>
+			<div class="box">
+				<i class='bx bxs-plane-alt'></i>
+				<h3>Fly to your next adventure.</h3>
+				<p>Find your preferred flight if you want to travel from different provinces instead of driving.</p>
+			</div>
+			<div class="box">
+				<i class='bx bxs-edit-location' ></i>
+				<h3>Guide to your next destination.</h3>
+				<p>We are like a travelling guide that finds places you want to go, and what to do when you get there. 
+					We want to make your South African time to be the best experience you ever had.</p>
+			</div>
+		</div>
+		
+	</section>
+	<!-- services section ends -->
+
+	<!-- review section starts -->
+	 <section class="reviews" id="reviews">
+		<div class="heading">
+			<h1>what others say<span> about us</span></h1>
+		</div>
+		<div class="swiper reviews-slider">
+			<div class="swiper-wrapper wrapper">
+				<div class="swiper-slide slider">
+					<div class="box">
+						<img src="{% static 'images/beautiful-afro-american-woman-smiling.jpg' %}" alt="">
+						<h3>Linda Modile</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+					</div>
+				</div>
+				<div class="swiper-slide slider">
+					<div class="box">
+						<img src="{% static 'images/medium-shot-woman-working-as-lawyer.jpg' %}" alt="">
+						<h3>Sello Chokwe</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+					</div>
+				</div>
+				<div class="swiper-slide slider">
+					<div class="box">
+						<img src="{% static 'images/indoor-portrait-displeased-discontent-upset-male-model-with-trendy-hairdo-mustache-beard-wears-round-glasses.jpg' %}" alt="">
+						<h3>Itachi Moeti</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+					</div>
+				</div>
+				<div class="swiper-slide slider">
+					<div class="box">
+						<img src="{% static 'images/portrait-successful-confident-dark-skinned-entrepreneur-wearing-gray-formal-suit-standing-against-wall-with.jpg' %}" alt="">
+						<h3>rackoon</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</br></br>
+	<div class="rate-us" id="rate-us">
+		<div class="heading">
+			<h1>Rate Our Service</h1>
+		</div>
+			<form id="rating-form">
+				<div class="star-rating">
+					<input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 stars">☆</label>
+					<input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 stars">☆</label>
+					<input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 stars">☆</label>
+					<input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 stars">☆</label>
+					<input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star">☆</label>
+				</div>
+				<button type="submit" class="btn">Submit Rating</button>
+			</form>
+			<div id="rating-message"></div>
+	</div>
+	</section>
+<!-- review section ends -->
+
+<!-- contact us section start -->
+<section class="contact" id="contact">
+	<div class="heading">
+		<h1>Contact <span>Us</span></h1>
+	</div>
+	<div class="row">
+
+		<div class="image">
+			<img src="{% static 'images/Flag_map_of_South_Africa.svg.png' %}" alt="">
+		</div>
+		
+		<form action="">
+			<div class="inputBox">
+				<input type="text" placeholder="name">
+				<input type="email" placeholder="email">
+			</div>
+
+			<div class="inputBox">
+				<input type="number" placeholder="contact number">
+				<input type="text" placeholder="subject">
+			</div>
+
+			<textarea placeholder="message" name="" id="" cols="30" rows="10"></textarea>
+			<input type="submit" class="btn" value="send message">
+		</form>
+	</div>
+</section>
+<!-- contact us section end -->
+
+<!-- footer section -->
+ <section class="footer">
+
+	<div class="box-container">
+
+		<div class="box">
+			<h3>About us</h3>
+			<p>Travelling tour guide is  a travelling guide that gives you what you want. 
+				You tell the site what's on your mind and we give you that in visual, 
+				so that your travelling will be simplified.</p>
+		</div>
+		<div class="box">
+			<h3>Provinces</h3>
+			<a href="#">Limpopo</a>
+			<a href="#">Gauteng</a>
+			<a href="#">KwaZulu-Natal</a>
+			<a href="#">Western Cape</a>
+			<a href="#">Eastern Cape</a>
+			<a href="#">Mpumalanga</a>
+			<a href="#">Free State</a>
+			<a href="#">North West</a>
+			<a href="#">Northern Cape</a>
+		</div>
+
+		<div class="box">
+			<h3>quick links</h3>
+			<a href="#home">home</a>
+			<a href="#gallery">gallery</a>
+			<a href="#services">services</a>
+			<a href="#reviews">reviews</a>
+			<a href="#contact">contact</a>
+		</div>
+		<div class="box">
+			<h3>follow us</h3>
+			<a href="#">facebook</a>
+			<a href="#">twitter/x</a>
+			<a href="#">instagram</a>
+			<a href="#">linkedin</a>
+			<a href="#">github</a>
+		</div>
+
+	</div>
+	<h1 class="credit"> created by <span>Isabela Tlhakudi</span> | all rights reserved.</h1>
+ </section>
+
+</body>
+<!-- swiper js link -->
+	<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+	<!-- swiper js link -->
+	<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+	<!-- custom js file link -->
+	<script src="{static 'javascript/script.js'}"></script>
+</html>
