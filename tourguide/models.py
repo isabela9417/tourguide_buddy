@@ -18,11 +18,11 @@ class TourismSite(models.Model):
     name = models.CharField(max_length=200)
     province = models.ForeignKey(Province, on_delete=models.CASCADE)
     site_type = models.CharField(max_length=100)
+    price = models.DecimalField(default=0, decimal_places=2, max_digits=6)
     description = models.TextField(max_length=350, default='', blank=True, null=True)
     image = models.ImageField(upload_to='tourism_sites/')
-    latitude = models.FloatField()
-    longitude = models.FloatField()
     booking_link = models.URLField(max_length=200, blank=True, null=True)
+
 
     def __str__(self):
         return self.name
@@ -34,8 +34,6 @@ class Hotel(models.Model):
     province = models.ForeignKey(Province, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='hotels/')
     description = models.TextField(max_length=350, default='', blank=True, null=True)
-    latitude = models.FloatField()
-    longitude = models.FloatField()
     booking_link = models.URLField(max_length=200, blank=True, null=True)
 
     def __str__(self):
@@ -46,10 +44,8 @@ class RentalCar(models.Model):
     name = models.CharField(max_length=200)
     address = models.CharField(max_length=255)
     province = models.ForeignKey(Province, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='hotels/')
+    image = models.ImageField(upload_to='car_servicess/')
     description = models.TextField(max_length=350, default='', blank=True, null=True)
-    latitude = models.FloatField()
-    longitude = models.FloatField()
     booking_link = models.URLField(max_length=200, blank=True, null=True)
 
     def __str__(self):
@@ -57,10 +53,10 @@ class RentalCar(models.Model):
 
 # Customer or user model
 class User(models.Model):
-    firstName = models.CharField(max_length=200)
+    name = models.CharField(max_length=200)
     lastName = models.CharField(max_length=255)
+    email = models.EmailField(max_length=255)
     phone = models.ForeignKey(Province, on_delete=models.CASCADE)
-    email = models.ImageField(upload_to='hotels/')
     password = models.TextField()
     
     def __str__(self):

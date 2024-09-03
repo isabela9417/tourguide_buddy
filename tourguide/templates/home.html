@@ -68,7 +68,10 @@
 
 			<!-- the container i -->
 			<div class="video-container">
-				<video src="{% static 'videos/457446_South Africa_Africa_1920x1080.mp4' %}" type="video/mp4" id="video-slider" loop autoplay muted></video>
+				<video  id="video-slider" loop autoplay muted>
+					<source src="{% static 'videos/457446_South Africa_Africa_1920x1080.mp4' %}" type="video/mp4">
+				</video>
+				<!-- searching bar form -->
 				<form action="" class="search-bar-container">
 					<input type="search" id="search-bar" placeholder="Search Here...">
 					<label for="search-bar" class="bx bx-search-alt-2"></label>
@@ -300,5 +303,5 @@
 	<!-- swiper js link -->
 	<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 	<!-- custom js file link -->
-	<script src="{static 'javascript/script.js'}"></script>
+	<script src="{% static 'javascript/script.js' %}"></script>
 </html>
