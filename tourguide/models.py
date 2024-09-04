@@ -17,6 +17,7 @@ class Province(models.Model):
 class TourismSite(models.Model):
     name = models.CharField(max_length=200)
     province = models.ForeignKey(Province, on_delete=models.CASCADE)
+    address = models.CharField(max_length=200)
     site_type = models.CharField(max_length=100)
     price = models.DecimalField(default=0, decimal_places=2, max_digits=6)
     description = models.TextField(max_length=350, default='', blank=True, null=True)
@@ -32,6 +33,7 @@ class Hotel(models.Model):
     name = models.CharField(max_length=200)
     address = models.CharField(max_length=255)
     province = models.ForeignKey(Province, on_delete=models.CASCADE)
+    address = models.CharField(max_length=200)
     image = models.ImageField(upload_to='hotels/')
     description = models.TextField(max_length=350, default='', blank=True, null=True)
     booking_link = models.URLField(max_length=200, blank=True, null=True)
@@ -44,6 +46,7 @@ class RentalCar(models.Model):
     name = models.CharField(max_length=200)
     address = models.CharField(max_length=255)
     province = models.ForeignKey(Province, on_delete=models.CASCADE)
+    address = models.CharField(max_length=200)
     image = models.ImageField(upload_to='car_servicess/')
     description = models.TextField(max_length=350, default='', blank=True, null=True)
     booking_link = models.URLField(max_length=200, blank=True, null=True)
