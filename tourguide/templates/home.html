@@ -59,168 +59,197 @@
 	</div>
 	<!-- End of the login form -->
 
-	<!-- home section begins -->
-		<section class="home" id="home">
-			<div class="content">
-				<h3>Nature is our pride in <span>South Africa</span></h3>
-				<p>Search for your destination, as it awaits you...</p>
-			</div>
+<!-- home section begins -->
+<section class="home" id="home">
+    <div class="content">
+        <h3>Nature is our pride in <span>South Africa</span></h3>
+        <p id="caption">Search for your destination, as it awaits you...</p>
+    </div>
 
-			<!-- the container i -->
-			<div class="video-container">
-				<video  id="video-slider" loop autoplay muted>
-					<source src="{% static 'videos/457446_South Africa_Africa_1920x1080.mp4' %}" type="video/mp4">
-				</video>
-				<!-- searching bar form -->
-				<form action="" class="search-bar-container">
-					<input type="search" id="search-bar" placeholder="Search Here...">
-					<label for="search-bar" class="bx bx-search-alt-2"></label>
-				</form>
-			</div>
-		</section>
-	<!-- home section end -->
+    <!-- the video container -->
+    <div class="video-container">
+        <video id="video-slider" loop autoplay muted>
+            <!-- Initial video source -->
+            {% if videos %}
+                <source src="{{ videos.0.video_file.url }}" type="video/mp4">
+            {% else %}
+                <p>No videos available.</p>
+            {% endif %}
+        </video>
 
-	<!-- gallary section begins -->
-		<section class="gallery" id="gallery">
-			<div class="heading">
-				<h1>Ga<span>llery</span></h1>
-			</div>
-			<div class="box-container">
-				<div class="box">
-					<img src="{% static 'images/Kruger National.jpg' %}" alt="">
-					<div class="content">
-						<h3><i class='bx bx-map'></i> Name of the site here</h3>
-						<p>Province goes here</p>
-						<a href="#" class="btn">More Info</a>
-					</div>
-				</div>
-				<div class="box">
-					<img src="{% static 'images/Boulders Beach.jpg' %}" alt="">
-					<div class="content">
-						<h3><i class='bx bx-map'></i> Name of the site here</h3>
-						<p>Province goes here</p>
-						<a href="#" class="btn">More Info</a>
-					</div>
-				</div>
-				<div class="box">
-					<img src="{% static 'images/uShaka Marine World.jpg' %}" alt="">
-					<div class="content">
-						<h3><i class='bx bx-map'></i> Name of the site here</h3>
-						<p>Province goes here</p>
-						<a href="#" class="btn">More Info</a>
-					</div>
-				</div>
-				<div class="box">
-					<img src="{% static 'images/Sun City Resort.jpg' %}" alt="">
-					<div class="content">
-						<h3><i class='bx bx-map'></i> Name of the site here</h3>
-						<p>Province goes here</p>
-						<a href="#" class="btn">More Info</a>
-					</div>
-				</div>
-			</div>
-		</section>
-	<!-- gallery section end -->
+        <!-- searching bar form -->
+        <form action="" class="search-bar-container">
+            <input type="search" id="search-bar" placeholder="Search Here...">
+            <label for="search-bar" class="bx bx-search-alt-2"></label>
+        </form>
+    </div>
+</section>
 
-	<!-- services section starts -->
-	<section class="services" id="services">
-		<div class="heading">
-			<h1>Our <span>Services</span></h1>
+<script>
+    // Array of dynamic video sources and captions passed from the backend
+    const videoSources = [
+        {% for video in videos %}
+            { src: "{{ video.video_file.url }}", caption: "{{ video.description }}" },
+        {% endfor %}
+    ];
+
+    const videoElement = document.getElementById('video-slider');
+    const captionElement = document.getElementById('caption');
+
+    if (videoElement && captionElement) {
+        let currentIndex = 0;
+
+        function changeVideo() {
+            if (videoSources.length === 0) return;
+            const video = videoSources[currentIndex];
+            
+            // Update the video src directly
+            videoElement.src = video.src;
+            
+            // Update the caption
+            captionElement.textContent = video.caption;
+            
+            // Load and play the new video
+            videoElement.load();
+            videoElement.play();
+            
+            // Move to the next video, loop back if at the end
+            currentIndex = (currentIndex + 1) % videoSources.length;
+        }
+
+        // Set the interval to change video every 5 seconds
+        setInterval(changeVideo, 5000);
+
+        // Initial call to set the first video and caption
+        changeVideo();
+    } else {
+        console.error('Video or caption element not found');
+    }
+</script>
+<!-- home section ends -->
+
+<!-- gallery section begins -->
+<section class="gallery" id="gallery">
+    <div class="heading">
+        <h1>Ga<span>llery</span></h1>
+    </div>
+    <div class="box-container">
+        <!-- Loop through the most visited sites -->
+        {% for site in most_visited_sites %}
+        <div class="box">
+            <!-- Display the site's background image -->
+            <img src="{{ site.background_image.url }}" alt="{{ site.name }}">
+            <div class="content">
+                <!-- Display the site's name and province -->
+                <h3><i class='bx bx-map'></i> {{ site.name }}</h3>
+                <p>{{ site.province.name }}</p>
+                <!-- Link for more info (optional) -->
+                <a href="#" class="btn">More Info</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+<!-- gallery section end -->
+
+<!-- services section starts -->
+<section class="services" id="services">
+	<div class="heading">
+		<h1>Our <span>Services</span></h1>
+	</div>
+
+	<div class="box-container">
+		<div class="box">
+			<i class='bx bx-hotel'></i>
+			<h3>Affordable hotels.</h3>
+			<p>To ease your search for accomodations, we collected South africa's most hotels and houses for you to look for the one you can afford and suits you</p>
 		</div>
+		<div class="box">
+			<i class='bx bx-restaurant'></i>
+			<h3>restaurants.</h3>
+			<p>Help you find restaurants that serves both South African and modern food, 
+				including drinks depending on your choice. We got you</p>
+		</div>
+		<div class="box">
+			<i class='bx bx-car'></i>
+			<h3>Cars for rental.</h3>
+			<p>Travelling can be difficutls, we can easily find you car to rent from various car renting companies in the province you choose to visit.</p>
+		</div>
+		<div class="box">
+			<i class='bx bx-directions'></i>
+			<h3>safe tours.</h3>
+			<p>Tell us what you want to do and we'll give you the information you need on a click. </p>
+		</div>
+		<div class="box">
+			<i class='bx bxs-plane-alt'></i>
+			<h3>Fly to your next adventure.</h3>
+			<p>Find your preferred flight if you want to travel from different provinces instead of driving.</p>
+		</div>
+		<div class="box">
+			<i class='bx bxs-edit-location' ></i>
+			<h3>Guide to your next destination.</h3>
+			<p>We are like a travelling guide that finds places you want to go, and what to do when you get there. 
+				We want to make your South African time to be the best experience you ever had.</p>
+		</div>
+	</div>	
+</section>
+<!-- services section ends -->
 
-		<div class="box-container">
-			<div class="box">
-				<i class='bx bx-hotel'></i>
-				<h3>Affordable hotels.</h3>
-				<p>To ease your search for accomodations, we collected South africa's most hotels and houses for you to look for the one you can afford and suits you</p>
-			</div>
-			<div class="box">
-				<i class='bx bx-restaurant'></i>
-				<h3>restaurants.</h3>
-				<p>Help you find restaurants that serves both South African and modern food, 
-					including drinks depending on your choice. We got you</p>
-			</div>
-			<div class="box">
-				<i class='bx bx-car'></i>
-				<h3>Cars for rental.</h3>
-				<p>Travelling can be difficutls, we can easily find you car to rent from various car renting companies in the province you choose to visit.</p>
-			</div>
-			<div class="box">
-				<i class='bx bx-directions'></i>
-				<h3>safe tours.</h3>
-				<p>Tell us what you want to do and we'll give you the information you need on a click. </p>
-			</div>
-			<div class="box">
-				<i class='bx bxs-plane-alt'></i>
-				<h3>Fly to your next adventure.</h3>
-				<p>Find your preferred flight if you want to travel from different provinces instead of driving.</p>
-			</div>
-			<div class="box">
-				<i class='bx bxs-edit-location' ></i>
-				<h3>Guide to your next destination.</h3>
-				<p>We are like a travelling guide that finds places you want to go, and what to do when you get there. 
-					We want to make your South African time to be the best experience you ever had.</p>
-			</div>
-		</div>
-		
-	</section>
-	<!-- services section ends -->
-
-	<!-- review section starts -->
-	 <section class="reviews" id="reviews">
-		<div class="heading">
-			<h1>what others say<span> about us</span></h1>
-		</div>
-		<div class="swiper reviews-slider">
-			<div class="swiper-wrapper wrapper">
-				<div class="swiper-slide slider">
-					<div class="box">
-						<img src="{% static 'images/beautiful-afro-american-woman-smiling.jpg' %}" alt="">
-						<h3>Linda Modile</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					</div>
+<!-- review section starts -->
+<section class="reviews" id="reviews">
+	<div class="heading">
+		<h1>what others say<span> about us</span></h1>
+	</div>
+	<div class="swiper reviews-slider">
+		<div class="swiper-wrapper wrapper">
+			<div class="swiper-slide slider">
+				<div class="box">
+					<img src="#" alt="">
+					<h3>Linda Modile</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 				</div>
-				<div class="swiper-slide slider">
-					<div class="box">
-						<img src="{% static 'images/medium-shot-woman-working-as-lawyer.jpg' %}" alt="">
-						<h3>Sello Chokwe</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					</div>
+			</div>
+			<div class="swiper-slide slider">
+				<div class="box">
+					<img src="#" alt="">
+					<h3>Sello Chokwe</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 				</div>
-				<div class="swiper-slide slider">
-					<div class="box">
-						<img src="{% static 'images/indoor-portrait-displeased-discontent-upset-male-model-with-trendy-hairdo-mustache-beard-wears-round-glasses.jpg' %}" alt="">
-						<h3>Itachi Moeti</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					</div>
+			</div>
+			<div class="swiper-slide slider">
+				<div class="box">
+					<img src="#" alt="">
+					<h3>Itachi Moeti</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 				</div>
-				<div class="swiper-slide slider">
-					<div class="box">
-						<img src="{% static 'images/portrait-successful-confident-dark-skinned-entrepreneur-wearing-gray-formal-suit-standing-against-wall-with.jpg' %}" alt="">
-						<h3>rackoon</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					</div>
+			</div>
+			<div class="swiper-slide slider">
+				<div class="box">
+					<img src="#" alt="">
+					<h3>rackoon</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 				</div>
 			</div>
 		</div>
+	</div>
 	</br></br>
 	<div class="rate-us" id="rate-us">
 		<div class="heading">
 			<h1>Rate Our Service</h1>
 		</div>
-			<form id="rating-form">
-				<div class="star-rating">
-					<input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 stars">☆</label>
-					<input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 stars">☆</label>
-					<input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 stars">☆</label>
-					<input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 stars">☆</label>
-					<input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star">☆</label>
-				</div>
-				<button type="submit" class="btn">Submit Rating</button>
-			</form>
-			<div id="rating-message"></div>
+		<form id="rating-form">
+			<div class="star-rating">
+				<input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 stars">☆</label>
+				<input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 stars">☆</label>
+				<input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 stars">☆</label>
+				<input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 stars">☆</label>
+				<input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star">☆</label>
+			</div>
+			<button type="submit" class="btn">Submit Rating</button>
+		</form>
+		<div id="rating-message"></div>
 	</div>
-	</section>
+</section>
 <!-- review section ends -->
 
 <!-- contact us section start -->
@@ -231,7 +260,7 @@
 	<div class="row">
 
 		<div class="image">
-			<img src="{% static 'images/Flag_map_of_South_Africa.svg.png' %}" alt="">
+			<img src="#" alt="">
 		</div>
 		
 		<form action="">

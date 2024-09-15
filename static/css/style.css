@@ -263,6 +263,9 @@ header .icons i:hover {
 .home .search-bar-container label:hover {
     color: var(--babyBlue);
 }
+.home .video-container {
+    background: var(--black); 
+}
 
 .home .video-container video {
     position: absolute;

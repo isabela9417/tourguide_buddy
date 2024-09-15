@@ -29,59 +29,22 @@ formClose.addEventListener('click', () => {
     loginForm.classList.remove('active');
 });
 
-
-// videos on auto-play for 5s
-    // Array of video sources
-    const videoSources = [
-        { src: "{% static 'videos/457446_South Africa_Africa_1920x1080.mp4' %}", caption: 'Search for your destination, as it awaits you...' },
-        { src: "{% static 'videos/463049_Elephant_Elephants_1920x1080.mp4' %}", caption: 'Wild life showing the beauty of the wilderness...' },
-        { src: "{% static 'videos/6013749_Nature_Forest_3840x2160.mp4' %}", caption: 'Enchanting forest landscapes, natural hot-springs' },
-        { src: "{% static 'videos/1112734_Windy_Roast_3840x2160.mp4' %}", caption: 'Camping sites, where family and friends matters...' },
-        { src: "{% static 'videos/5080213_Waterfall_Cascade_1920x1080.mp4' %}", caption: 'Places where you will enjoy the noise, birds, waters and the smell of winds...' },
-        { src: "{% static 'videos/457290_Focks_South Africa_1920x1080.mp4' %}", caption: 'Welcome to South Africa' }
-    ];
-
-    const videoElement = document.getElementById('video-slider');
-    const captionElement = document.querySelector('.content p');
-
-    if (videoElement && captionElement) {
-        let currentIndex = 0;
-
-        function changeVideo() {
-            if (videoSources.length === 0) return;
-            const video = videoSources[currentIndex];
-            videoElement.src = video.src;
-            captionElement.textContent = video.caption;
-            videoElement.load();
-            videoElement.play();
-            currentIndex = (currentIndex + 1) % videoSources.length;
-        }
-
-        // Set the interval to change video every 5 seconds
-        setInterval(changeVideo, 5000);
-
-        // Initial call to set the first video and caption
-        changeVideo();
+// rate us form
+document.getElementById('rating-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the form from submitting the traditional way
+    
+    const rating = document.querySelector('input[name="rating"]:checked');
+    const ratingMessage = document.getElementById('rating-message');
+    
+    if (rating) {
+        const ratingValue = rating.value;
+        ratingMessage.textContent = `Thank you for rating us ${ratingValue} star${ratingValue > 1 ? 's' : ''}!`;
+        ratingMessage.style.color = 'green';
     } else {
-        console.error('Video or caption element not found');
+        ratingMessage.textContent = 'Please select a rating before submitting.';
+        ratingMessage.style.color = 'red';
     }
-
-    // rate us form
-    document.getElementById('rating-form').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent the form from submitting the traditional way
-    
-        const rating = document.querySelector('input[name="rating"]:checked');
-        const ratingMessage = document.getElementById('rating-message');
-    
-        if (rating) {
-            const ratingValue = rating.value;
-            ratingMessage.textContent = `Thank you for rating us ${ratingValue} star${ratingValue > 1 ? 's' : ''}!`;
-            ratingMessage.style.color = 'green';
-        } else {
-            ratingMessage.textContent = 'Please select a rating before submitting.';
-            ratingMessage.style.color = 'red';
-        }
-    });
+});
 
 
     // review slider

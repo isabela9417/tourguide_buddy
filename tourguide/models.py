@@ -1,6 +1,23 @@
 from django.db import models
-import datetime
 from django.utils.translation import gettext_lazy as _
+
+class Video(models.Model):
+    title = models.CharField(max_length=255)
+    video_file = models.FileField(upload_to='videos/')
+    description = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return self.title
+
+
+class MostVisitedSite(models.Model):
+    name = models.CharField(max_length=255)
+    province = models.ForeignKey('Province', on_delete=models.CASCADE)
+    background_image = models.ImageField(upload_to='backgrounds/')
+    description = models.TextField()
+
+    def __str__(self):
+        return self.name
 
 
 # Province model
