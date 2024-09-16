@@ -63,6 +63,10 @@ WSGI_APPLICATION = 'tourguide_buddy.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# API keys
+GOOGLE_PLACES_API_KEY = 'AIzaSyDrg5TN2hc-TN6vXqQAwJ7gxVXh81vd_w0'
+PEXELS_API_KEY = 'DLHsqdGZP2MIwpaqPFRpaME18r8QwneIjGYqOydECWjRkh8kODfJJ6l6'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',

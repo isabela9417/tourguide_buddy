@@ -85,49 +85,7 @@
     </div>
 </section>
 
-<script>
-    // Array of dynamic video sources and captions passed from the backend
-    const videoSources = [
-        {% for video in videos %}
-            { src: "{{ video.video_file.url }}", caption: "{{ video.description }}" },
-        {% endfor %}
-    ];
-
-    const videoElement = document.getElementById('video-slider');
-    const captionElement = document.getElementById('caption');
-
-    if (videoElement && captionElement) {
-        let currentIndex = 0;
-
-        function changeVideo() {
-            if (videoSources.length === 0) return;
-            const video = videoSources[currentIndex];
-            
-            // Update the video src directly
-            videoElement.src = video.src;
-            
-            // Update the caption
-            captionElement.textContent = video.caption;
-            
-            // Load and play the new video
-            videoElement.load();
-            videoElement.play();
-            
-            // Move to the next video, loop back if at the end
-            currentIndex = (currentIndex + 1) % videoSources.length;
-        }
-
-        // Set the interval to change video every 5 seconds
-        setInterval(changeVideo, 5000);
-
-        // Initial call to set the first video and caption
-        changeVideo();
-    } else {
-        console.error('Video or caption element not found');
-    }
-</script>
 <!-- home section ends -->
-
 <!-- gallery section begins -->
 <section class="gallery" id="gallery">
     <div class="heading">
@@ -151,7 +109,42 @@
     </div>
 </section>
 <!-- gallery section end -->
-
+<!-- results section begins -->
+<section class="results" id="results">
+	<div class="box-container">
+		{% if place_details %}
+			{% for place_id, details in place_details.items %}
+				<div class="box">
+					{% if details.pexels_image %}
+						<img src="{{ details.pexels_image }}" alt="Image of {{ details.name }}">
+						<br><br>
+					{% else %}
+						<img src="{% static 'images/placeholder.png' %}" alt="No image available">
+						<br><br>
+					{% endif %}
+					<div class="content">
+						<h3>{{ details.name }}</h3>
+						<p><strong>Address:</strong> {{ details.formatted_address }}</p>
+						<p><strong>Phone:</strong> {{ details.formatted_phone_number }}</p>
+						<p><strong>Website:</strong> <a href="{{ details.website }}" target="_blank">{{ details.website }}</a></p>
+						{% if details.opening_hours %}
+							<p><strong>Opening Hours:</strong> 
+								{% if details.opening_hours.open_now %}
+									Open now
+								{% else %}
+									Closed
+								{% endif %}
+							</p>
+						{% endif %}
+					</div>
+				</div>
+			{% endfor %}
+		{% else %}
+			<p>No places found.</p>
+		{% endif %}
+	</div>
+</section>
+<!-- results section ends-->
 <!-- services section starts -->
 <section class="services" id="services">
 	<div class="heading">
@@ -194,7 +187,6 @@
 	</div>	
 </section>
 <!-- services section ends -->
-
 <!-- review section starts -->
 <section class="reviews" id="reviews">
 	<div class="heading">
