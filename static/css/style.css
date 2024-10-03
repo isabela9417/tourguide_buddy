@@ -81,6 +81,7 @@ header .logo {
     font-weight: bolder;
     color: var(--white);
 }
+
 header .logo span {
     color: var(--babyBlue);
 }
@@ -116,87 +117,6 @@ header .icons i:hover {
     display: none;
 }
 
-/* login form */
-.login-form-container {
-    position: fixed;
-    top: -120%;
-    left: 0;
-    z-index: 10000;
-    min-height: 100vh;
-    width: 100%;
-    background: rgba(0, 0, 0, .7);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.login-form-container.active {
-    top: 0;
-}
-
-.login-form-container form {
-    margin: 2rem;
-    padding: 1.5rem 2rem;
-    border-radius: .5rem;
-    background: var(--white);
-    width: 50rem;
-}
-.login-form-container form h3 {
-    font-size: 3rem;
-    color: var(--black);
-    text-transform: uppercase;
-    text-align: center;
-    padding: 1rem 0;
-}
-
-.login-form-container form .box {
-    width: 100%;
-    padding: 1rem;
-    font-size: 1.7rem;
-    color: var(--black);
-    margin: .6rem 0;
-    border: .1rem solid rgba(0, 0, 0, .3);
-    text-transform: none;
-}
-
-.login-form-container form .box:focus {
-    border-color: var(--babyBlue);
-}
-
-.login-form-container form #remember {
-    margin: 1.5rem;
-}
-
-.login-form-container form label {
-    font-size: 1.5rem;
-}
-
-.login-form-container form .btn {
-    display: block;
-    width: 100%;
-}
-
-.login-form-container form p {
-    padding: .5rem 0;
-    font-size: 1.5rem;
-    color: var(--black);
-}
-
-.login-form-container form p a {
-    color: var(--blue);
-}
-
-.login-form-container form p a:hover {
-    color: var(--black);
-    text-decoration: underline;
-}
-.login-form-container #form-close {
-    position: absolute;
-    top: 2rem;
-    right: 3rem;
-    font-size: 5rem;
-    color: var(--white);
-}
 /* home section  */
 .home {
     min-height: 100vh;
@@ -520,6 +440,40 @@ header .icons i:hover {
     color: var(--black);
     border: .2rem solid var(--white); 
 }
+/*result section*/
+.results {
+    background: var(--white);
+    padding: 3rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.results h2 {
+    font-size: 2.5rem;
+    color: var(--black);
+    margin-bottom: 1.5rem;
+}
+
+.results p {
+    font-size: 1.5rem;
+    color: var(--grey);
+    margin-bottom: 2rem;
+}
+
+.results .result-item {
+    padding: 1rem;
+    border: 1px solid var(--grey);
+    border-radius: 0.5rem;
+    margin: 1rem 0;
+}
+
+.results .result-item:hover {
+    background: var(--babyBlue);
+    color: var(--white);
+    transition: background 0.3s, color 0.3s;
+}
+
 
 /* footer section */
 .footer {

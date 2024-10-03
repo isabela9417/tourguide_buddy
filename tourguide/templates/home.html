@@ -26,7 +26,7 @@
 			<i class='bx bx-menu' id="menu-bar"></i>
 		</div>
 		<!-- the navigation bar -->
-		<a href="#home" class="logo"><span>T</span>ravelling <span>T</span>our <span>G</span>uide</a>
+		<a href="#home" class="logo"><span>I</span>zzy <span>T</span>our <span>G</span>uide</a>
 		<nav class="navbar">
 			<a href="#home">home</a>
 			<a href="#gallery">gallery</a>
@@ -34,30 +34,7 @@
 			<a href="#reviews">reviews</a>
 			<a href="#contact">contact</a>
 		</nav>
-		<!-- icons -->
-		<div class='icons'>
-			<i class='bx bxs-user-circle' id="login-btn"></i>
-		</div>
-		
 	</header>
-
-
-	<!-- login form container -->
-	<div class="login-form-container">
-
-		<i class='bx bx-x' id="form-close"></i>
-		<form action="action">
-			<h3>Login</h3>
-			<input type="email" class="box" placeholder="Enter your email">
-			<input type="password" class="box" placeholder="Enter your password">
-			<input type="submit" value="login now" class="btn">
-			<input type="checkbox" id="remember">
-			<label for="remember">Remember me</label>
-			<p>Forgot password? <a href="">click here</a></p>
-			<p>Don't have an account? <a href="">Register now</a></p>
-		</form>
-	</div>
-	<!-- End of the login form -->
 
 <!-- home section begins -->
 <section class="home" id="home">
@@ -78,14 +55,18 @@
         </video>
 
         <!-- searching bar form -->
-        <form action="" class="search-bar-container">
-            <input type="search" id="search-bar" placeholder="Search Here...">
-            <label for="search-bar" class="bx bx-search-alt-2"></label>
-        </form>
+<!-- searching bar form -->
+<form action="{% url 'get_suggestions' %}" method="POST" class="search-bar-container">
+    {% csrf_token %}
+    <input type="search" name="topic" id="search-bar" placeholder="Search Here..." required>
+    <label for="search-bar" class="bx bx-search-alt-2"></label>
+</form>
+
     </div>
 </section>
 
 <!-- home section ends -->
+
 <!-- gallery section begins -->
 <section class="gallery" id="gallery">
     <div class="heading">
@@ -105,46 +86,15 @@
                 <a href="#" class="btn">More Info</a>
             </div>
         </div>
+        {% empty %}
+        <!-- Handle the case where there are no sites -->
+        <p>No sites available.</p>
         {% endfor %}
     </div>
 </section>
 <!-- gallery section end -->
-<!-- results section begins -->
-<section class="results" id="results">
-	<div class="box-container">
-		{% if place_details %}
-			{% for place_id, details in place_details.items %}
-				<div class="box">
-					{% if details.pexels_image %}
-						<img src="{{ details.pexels_image }}" alt="Image of {{ details.name }}">
-						<br><br>
-					{% else %}
-						<img src="{% static 'images/placeholder.png' %}" alt="No image available">
-						<br><br>
-					{% endif %}
-					<div class="content">
-						<h3>{{ details.name }}</h3>
-						<p><strong>Address:</strong> {{ details.formatted_address }}</p>
-						<p><strong>Phone:</strong> {{ details.formatted_phone_number }}</p>
-						<p><strong>Website:</strong> <a href="{{ details.website }}" target="_blank">{{ details.website }}</a></p>
-						{% if details.opening_hours %}
-							<p><strong>Opening Hours:</strong> 
-								{% if details.opening_hours.open_now %}
-									Open now
-								{% else %}
-									Closed
-								{% endif %}
-							</p>
-						{% endif %}
-					</div>
-				</div>
-			{% endfor %}
-		{% else %}
-			<p>No places found.</p>
-		{% endif %}
-	</div>
-</section>
-<!-- results section ends-->
+
+
 <!-- services section starts -->
 <section class="services" id="services">
 	<div class="heading">
@@ -196,28 +146,28 @@
 		<div class="swiper-wrapper wrapper">
 			<div class="swiper-slide slider">
 				<div class="box">
-					<img src="#" alt="">
+					<img src="{% static 'images/african-teenage-girl-portrait-happy-smiling-face.jpg' %}" alt="">
 					<h3>Linda Modile</h3>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 				</div>
 			</div>
 			<div class="swiper-slide slider">
 				<div class="box">
-					<img src="#" alt="">
+					<img src="{% static 'images/portrait-successful-confident-dark-skinned-entrepreneur-wearing-gray-formal-suit-standing-against-wall-with.jpg' %}" alt="">
 					<h3>Sello Chokwe</h3>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 				</div>
 			</div>
 			<div class="swiper-slide slider">
 				<div class="box">
-					<img src="#" alt="">
+					<img src="{% static 'images/beautiful-middle-aged-woman-portrait.jpg' %}" alt="">
 					<h3>Itachi Moeti</h3>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 				</div>
 			</div>
 			<div class="swiper-slide slider">
 				<div class="box">
-					<img src="#" alt="">
+					<img src="{% static 'images/worldface-ugandan-man-white-background.jpg' %}" alt="">
 					<h3>rackoon</h3>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 				</div>
@@ -252,7 +202,7 @@
 	<div class="row">
 
 		<div class="image">
-			<img src="#" alt="">
+			 <img src="{% static 'images/istockphoto-1368005661-612x612.jpg' %}" alt="">
 		</div>
 		
 		<form action="">

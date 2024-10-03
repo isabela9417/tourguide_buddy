@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Izzy TravelGuide</title>
+
+    <!-- swiper css link -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+    <!-- font awesome boxicons link -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- custom css file link -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <!-- swiperjs link -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+
+</head>
+<body>
+    <header>
+        <!-- icons -->
+        <div class='icons'>
+            <i class='bx bx-menu' id="menu-bar"></i>
+        </div>
+        <!-- the navigation bar -->
+        <a href="#home" class="logo"><span>I</span>zzy <span>T</span>our <span>G</span>uide</a>
+        <nav class="navbar">
+            <a href="#home">home</a>
+            <a href="#gallery">gallery</a>
+            <a href="#services">services</a>
+            <a href="#reviews">reviews</a>
+            <a href="#contact">contact</a>
+        </nav>
+    </header>
+    
+    <!-- Results Section Begins -->
+    <section class="results" id="results">
+        <h2 class="heading">Try These <span> Places</span></h2>
+        <ul>
+            {% if place_details %}
+                {% for place_id, details in place_details.items %}
+                    <li class="result-item">{{ details.name }}</li>
+                {% endfor %}
+            {% else %}
+                <li>No places found.</li>
+            {% endif %}
+        </ul>
+
+        <h2 class="heading">Details of <span> Suggested Places</span></h2>
+        <div class="box-container">
+            {% if place_details %}
+                {% for place_id, details in place_details.items %}
+                    <div class="box">
+                        {% if details.image_url %}
+                            <img src="{{ details.image_url }}" alt="Image of {{ details.name }}" loading="lazy">
+                        {% else %}
+                            <img src="{% static 'images/placeholder.png' %}" alt="No image available" loading="lazy">
+                        {% endif %}
+                        <div class="content">
+                            <h3>{{ details.name }}</h3>
+                            <p><strong>Address:</strong> {{ details.formatted_address }}</p>
+                            <p><strong>Phone:</strong> {{ details.formatted_phone_number }}</p>
+                            <p><strong>Website:</strong> <a href="{{ details.website }}" target="_blank">{{ details.website }}</a></p>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No places found.</p>
+            {% endif %}
+        </div>
+        <a href="{% url 'home' %}" class="btn">Back to Home</a>
+    </section>
+    <!-- Results Section Ends -->
+</body>
+</html>
+
+
+

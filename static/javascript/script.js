@@ -3,10 +3,6 @@ const menu = document.querySelector('#menu-bar');
 const navbar = document.querySelector('.navbar');
 // video display
 const videoBtn = document.querySelectorAll('.vid-btn');
-// login form
-const formBtn = document.querySelector('#login-btn');
-const loginForm = document.querySelector('.login-form-container');
-const formClose = document.querySelector('#form-close');
 
 // Removing active classes
 window.onscroll = () => {
@@ -19,15 +15,6 @@ window.onscroll = () => {
 menu.addEventListener('click', () => {
     menu.classList.toggle('bx-x');
     navbar.classList.toggle('active');
-});
-
-// Closing and opening the login form
-formBtn.addEventListener('click', () => {
-    loginForm.classList.add('active');
-});
-
-formClose.addEventListener('click', () => {
-    loginForm.classList.remove('active');
 });
 
 // Rate us form

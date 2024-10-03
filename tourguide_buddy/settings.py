@@ -1,5 +1,8 @@
 from pathlib import Path
 import os
+from decouple import config
+from dotenv import load_dotenv
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -64,8 +67,10 @@ WSGI_APPLICATION = 'tourguide_buddy.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 # API keys
-GOOGLE_PLACES_API_KEY = 'AIzaSyDrg5TN2hc-TN6vXqQAwJ7gxVXh81vd_w0'
-PEXELS_API_KEY = 'DLHsqdGZP2MIwpaqPFRpaME18r8QwneIjGYqOydECWjRkh8kODfJJ6l6'
+load_dotenv() 
+
+GOOGLE_PLACES_API_KEY = os.getenv('GOOGLE_PLACES_API_KEY')
+GROQ_API_KEY = os.getenv('GROQ_API_KEY')
 
 DATABASES = {
     'default': {
