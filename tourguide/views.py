@@ -1,5 +1,6 @@
-from django.shortcuts import render
-from .models import Video, MostVisitedSite
+from django.shortcuts import render, get_object_or_404
+from .models import Video, MostVisitedSite, Province, TourismSite
+from django.urls import path
 import requests
 from django.conf import settings
 
@@ -69,129 +70,14 @@ def get_suggestions(request):
     return render(request, 'results.html', {'place_details': place_details})
 
 
-# def search_pexels_images(query):
-#     api_key = settings.PEXELS_API_KEY
-#     url = 'https://api.pexels.com/v1/search'
+# query the provonces
+def province_tourism_sites(request, province_name):
     
-#     headers = {
-#         'Authorization': api_key
-#     }
-    
-#     params = {
-#         'query': query,
-#         'per_page': 1  # Number of images to fetch
-#     }
-    
-#     try:
-#         response = requests.get(url, headers=headers, params=params)
-#         response.raise_for_status()  # Will raise an HTTPError for bad responses
-#         results = response.json().get('photos', [])
-#         if results:
-#             return results[0].get('src', {}).get('large', '')  # Adjust based on Pexels API response
-#         else:
-#             print(f"No images found for query: {query}")
-#             return ''  # No image found
-#     except requests.RequestException as e:
-#         print(f"Error searching Pexels images: {e}")
-#         return '' 
+    province_name = province_name.replace('-', ' ')
+    province = get_object_or_404(Province, name=province_name)
+    tourism_sites = TourismSite.objects.filter(province=province)
 
-
-
-# def home(request):
-#     videos = Video.objects.all()
-#     most_visited_sites = MostVisitedSite.objects.all()
-#     return render(request, 'home.html', {'videos': videos,'most_visited_sites': most_visited_sites})
-    
-# def search_places(query):
-#     api_key = settings.GOOGLE_PLACES_API_KEY
-#     url = 'https://maps.googleapis.com/maps/api/place/textsearch/json'
-    
-#     params = {
-#         'key': api_key,
-#         'query': query,
-#         'fields': 'name,formatted_address,formatted_phone_number,website,opening_hours,photos'
-#     }
-    
-#     try:
-#         response = requests.get(url, params=params)
-#         response.raise_for_status()  # Will raise an HTTPError for bad responses
-#         results = response.json().get('results', [])
-#         return results
-#     except requests.RequestException as e:
-#         print(f"Error searching places: {e}")
-#         return []
-
-# def get_place_details(place_id):
-#     api_key = settings.GOOGLE_PLACES_API_KEY
-#     url = 'https://maps.googleapis.com/maps/api/place/details/json'
-    
-#     params = {
-#         'key': api_key,
-#         'place_id': place_id,
-#         'fields': 'name,formatted_address,formatted_phone_number,website,opening_hours,photos'
-#     }
-    
-#     try:
-#         response = requests.get(url, params=params)
-#         response.raise_for_status()  # Will raise an HTTPError for bad responses
-#         place_details = response.json().get('result', {})
-#         return place_details
-#     except requests.RequestException as e:
-#         print(f"Error getting place details: {e}")
-#         return {}
-
-# def get_suggestions(request):
-#     if request.method == 'POST':
-#         query = request.POST.get('query', '')
-#         if not query:
-#             return render(request, 'home.html', {'error': 'Query cannot be empty'})
-
-#         # Search for places based on the query
-#         all_place_details = {}
-#         places = search_places(query)
-#         for place in places:
-#             place_id = place.get('place_id')
-#             if place_id:
-#                 place_details = get_place_details(place_id)
-#                 place_name = place_details.get('name', '')
-#                 place_details['pexels_image'] = search_pexels_images(place_name)
-#                 all_place_details[place_id] = place_details
-
-#         # Provide data to the template
-#         return render(request, 'results.html', {
-#             'query': query,
-#             'place_details': all_place_details
-#         })
-#     else:
-#         return render(request, 'home.html')
-
-# def search_results(request):
-#     query = request.POST.get('query', '')
-#     results = perform_search(query)
-#     return render(request, 'results.html', {'results': results})
-
-# def search_pexels_images(query):
-#     api_key = settings.PEXELS_API_KEY
-#     url = 'https://api.pexels.com/v1/search'
-    
-#     headers = {
-#         'Authorization': api_key
-#     }
-    
-#     params = {
-#         'query': query,
-#         'per_page': 1  # Number of images to fetch
-#     }
-    
-#     try:
-#         response = requests.get(url, headers=headers, params=params)
-#         response.raise_for_status()  # Will raise an HTTPError for bad responses
-#         results = response.json().get('photos', [])
-#         if results:
-#             return results[0].get('url', '')
-#         else:
-#             print(f"No images found for query: {query}")
-#             return ''  # No image found
-#     except requests.RequestException as e:
-#         print(f"Error searching Pexels images: {e}")
-#         return ''
+    return render(request, 'province_tourism_sites.html', {
+        'province': province,
+        'tourism_sites': tourism_sites
+    })

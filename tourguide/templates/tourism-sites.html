@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tourism Sites in {{ province.name }}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"> <!-- Link to your CSS -->
+</head>
+<body>
+    <div class="container">
+        <h1>Tourism Sites in {{ province.name }}</h1>
+        <p><strong>Capital:</strong> {{ province.capitalCity }}</p>
+        <p><strong>Description:</strong> {{ province.description }}</p>
+
+        <ul>
+            {% for site in tourism_sites %}
+                <li>
+                    <h2>{{ site.name }}</h2>
+                    <p><strong>Address:</strong> {{ site.address }}</p>
+                    <p><strong>Type:</strong> {{ site.site_type }}</p>
+                    <p><strong>Price:</strong> ${{ site.price }}</p>
+                    <p><strong>Description:</strong> {{ site.description }}</p>
+                    {% if site.booking_link %}
+                        <a class="btn" href="{{ site.booking_link }}">Book Now</a>
+                    {% endif %}
+                    {% if site.image %}
+                        <img src="{{ site.image.url }}" alt="{{ site.name }}" />
+                    {% else %}
+                        <img src="{% static 'images/placeholder.png' %}" alt="No image available" /> <!-- Placeholder -->
+                    {% endif %}
+                </li>
+            {% empty %}
+                <li>No tourism sites found for this province.</li>
+            {% endfor %}
+        </ul>
+
+        <a href="{% url 'home' %}" class="back-button">Back to Home</a>
+    </div>
+</body>
+</html>
