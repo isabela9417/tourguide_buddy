@@ -1,0 +1,336 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
+
+:root {
+    --babyBlue: #5caace;
+    --white: #FFFFFF;
+    --black: #000000;
+    --grey: #c2c1c1;
+    --blue: #0c1ec0e1;
+}
+
+* {
+    font-family: 'Nunito', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-transform: capitalize;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    transition: all .2s linear;
+}
+
+*::selection {
+    background: var(--babyBlue);
+    color: var(--white);
+}
+
+html {
+    font-size: 62.5%;
+    overflow: auto;
+    scroll-padding-top: 6rem;
+    scroll-behavior: smooth;
+}
+
+section {
+    padding: 2rem 9%;
+}
+
+.heading {
+    font-size: 3.5rem;
+    text-align: center;
+    padding: 2.5rem 0;
+    top: 5rem;
+    bottom: 5rem; 
+}
+
+.heading span {
+    color: var(--babyBlue);
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 1rem;
+    background: var(--babyBlue);
+    color: var(--white);
+    padding: .8rem 3rem;
+    border: .2rem solid var(--babyBlue);
+    cursor: pointer;
+    font-size: 1.7rem;
+}
+
+.btn:hover {
+    background: rgba(160, 215, 241, 0.705);
+    color: var(--babyBlue);
+}
+header {
+    position: fixed;
+    top: 0; 
+    left: 0; 
+    right: 0;
+    background: var(--black);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 9%;
+}
+
+header .logo {
+    font-size: 2.5rem;
+    font-weight: bolder;
+    color: var(--white);
+}
+
+header .logo span {
+    color: var(--babyBlue);
+}
+
+header .navbar a {
+    color: var(--white);
+    font-size: 2rem;
+    margin: 0 .8rem;
+}
+
+header .navbar a:hover {
+    color: var(--babyBlue);
+}
+
+header .icons i {
+    font-size: 2.5rem;
+    color: var(--white);
+    cursor: pointer;
+    margin-right: 2rem;
+}
+
+header .icons i:hover {
+    color: var(--babyBlue);
+}
+
+#menu-bar {
+    color: var(--white);
+    border: .1rem solid var(--white);
+    border-radius: .5rem;
+    font-size: 3rem;
+    padding: .5rem 1.2rem;
+    cursor: pointer;
+    display: none;
+}
+.icons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; 
+}
+
+.icons i {
+    font-size: 2.5rem; 
+    color: var(--white); 
+    cursor: pointer;
+}
+
+.tourism-sites .box-container {
+    margin-top: 5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.tourism-sites .box-container .box {
+    flex: 1 1 30rem;
+    border: 1rem solid var(--white);
+    border-radius: .5rem;
+    overflow: hidden;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, .2);
+    position: relative;
+}
+
+.tourism-sites .box-container .box img {
+    height: 250px; /* Set a fixed height for the images */
+    width: 400px;
+    object-fit: cover;
+}
+
+.tourism-sites .box-container .box .content {
+    padding: 2rem; /* Add padding around the content */
+    text-align: left; /* Align text to the left */
+    background: rgba(255, 255, 255, 0.9); /* Light background for contrast */
+}
+
+.tourism-sites .box-container .box .content h3 {
+    font-size: 2rem; /* Adjust font size */
+    color: var(--babyBlue);
+}
+
+.tourism-sites .box-container .box .content p {
+    font-size: 1.5rem; /* Adjust font size */
+    color: var(--black);
+    padding: .5rem 0;
+}
+
+
+/* footer section */
+.footer {
+    background: var(--black);
+}
+.footer .box-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.footer .box-container .box {
+    padding: 1rem 0;
+    flex: 1 1 25rem;
+}
+
+.footer .box-container .box h3 {
+    font-size: 2.5rem;
+    padding: .7rem 0;
+    color: var(--white);
+}
+
+.footer .box-container .box p {
+    font-size: 1.5rem;
+    padding: .7rem 0;
+    color: var(--white);
+}
+
+.footer .box-container .box a {
+    display: block;
+    font-size: 1.5rem;
+    padding: .7rem 0;
+    color: var(--white);
+}
+
+.footer .box-container .box a:hover {
+    color: var(--babyBlue);
+    text-decoration: underline;
+}
+
+.footer .credit {
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: 2rem;
+    font-size: 2rem;
+    font-weight: normal;
+    color: var(--white);
+    border-top: .1rem solid rgba(255, 255, 255, .2);
+}
+
+.footer .credit span{
+    color: var(--babyBlue);
+}
+
+
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    html {
+        font-size: 55%; 
+    }
+
+    header {
+        padding: 1.5rem 5%;
+    }
+
+    header .logo {
+        font-size: 2rem;
+    }
+
+    header .navbar a {
+        font-size: 1.6rem;
+    }
+    .icons {
+        justify-content: space-between;
+    }
+
+    .icons i {
+        font-size: 2rem;
+    }
+
+    #menu-bar {
+        display: block;
+    }
+
+
+    .tourism-sites .box-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tourism-sites .box-container .box {
+        width: 90%; 
+        margin: 0 auto;
+    }
+
+    .tourism-sites .box-container .box img {
+        width: 100%; 
+        height: auto; 
+    }
+
+    .tourism-sites .box-container .box .content h3 {
+        font-size: 1.8rem; 
+    }
+
+    .tourism-sites .box-container .box .content p {
+        font-size: 1.4rem; 
+    }
+
+    .btn {
+        font-size: 1.5rem; 
+        padding: .6rem 2rem; 
+    }
+
+    .footer .box-container .box h3 {
+        font-size: 2rem; 
+    }
+
+    .footer .box-container .box p, 
+    .footer .box-container .box a {
+        font-size: 1.3rem; 
+    }
+
+    .footer .credit {
+        font-size: 1.5rem; 
+    }
+}
+
+@media (max-width: 480px) {
+    html {
+        font-size: 50%; 
+    }
+
+    header .logo {
+        font-size: 1.8rem;
+    }
+
+    header .navbar a {
+        font-size: 1.4rem;
+    }
+
+    .btn {
+        font-size: 1.4rem; 
+        padding: .5rem 1.5rem; 
+    }
+
+    .tourism-sites .box-container .box .content h3 {
+        font-size: 1.6rem; 
+    }
+
+    .tourism-sites .box-container .box .content p {
+        font-size: 1.2rem; 
+    }
+
+    .footer .box-container .box h3 {
+        font-size: 1.8rem; 
+    }
+
+    .footer .box-container .box p, 
+    .footer .box-container .box a {
+        font-size: 1.1rem; 
+    }
+
+    .footer .credit {
+        font-size: 1.3rem; 
+    }
+}

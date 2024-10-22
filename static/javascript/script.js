@@ -34,7 +34,7 @@ document.getElementById('rating-form').addEventListener('submit', function(event
     }
 });
 
-// Review slider
+// about us slider
 var swiper = new Swiper(".reviews-slider", {
     spaceBetween: 20,
     loop: true,
@@ -55,94 +55,22 @@ var swiper = new Swiper(".reviews-slider", {
     },
 });
 
-// Search and update results
-document.addEventListener('DOMContentLoaded', () => {
-    const searchBar = document.querySelector('#search-bar');
-    const resultsSection = document.querySelector('#results');
+const videos = document.querySelectorAll('.video');
+let currentVideo = 0;
 
-    searchBar.addEventListener('input', function() {
-        const query = this.value;
-        if (query.length < 3) {
-            resultsSection.innerHTML = '<p>Type at least 3 characters to search.</p>';
-            return;
-        }
+// Function to play the next video
+function playNextVideo() {
+    videos[currentVideo].style.display = 'none'; // Hide the current video
+    currentVideo = (currentVideo + 1) % videos.length; // Move to the next video
+    videos[currentVideo].style.display = 'block'; // Show the next video
+    
+    // Automatically play the next video after the current one ends
+    videos[currentVideo].play();
+}
 
-        fetch("{% url 'get_suggestions' %}", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
-            },
-            body: JSON.stringify({ query })
-        })
-        .then(response => response.json())
-        .then(data => {
-            const placeDetails = data.place_details;
-            let output = '';
+// Initially play the first video
+videos[currentVideo].style.display = 'block';
+videos[currentVideo].play();
 
-            for (const [placeId, details] of Object.entries(placeDetails)) {
-                const image = details.pexels_image ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${details.pexels_image}&key=YOUR_GOOGLE_PLACES_API_KEY` : '{% static 'images/placeholder.png' %}';
-                const openingHours = details.opening_hours.open_now ? 'Open now' : 'Closed';
-
-                output += `
-                    <div class="box">
-                        <img src="${image}" alt="Image of ${details.name}">
-                        <div class="content">
-                            <h3>${details.name}</h3>
-                            <p><strong>Address:</strong> ${details.formatted_address}</p>
-                            <p><strong>Phone:</strong> ${details.formatted_phone_number}</p>
-                            <p><strong>Website:</strong> <a href="${details.website}" target="_blank">${details.website}</a></p>
-                            <p><strong>Opening Hours:</strong> ${openingHours}</p>
-                        </div>
-                    </div>`;
-            }
-
-            resultsSection.innerHTML = output;
-        })
-        .catch(error => {
-            resultsSection.innerHTML = '<p>Error retrieving results.</p>';
-        });
-    });
-});
-
-// Video autoplay functionality
-document.addEventListener('DOMContentLoaded', () => {
-    const videoSources = [
-        {% for video in videos %}
-            { src: "{{ video.video_file.url }}", caption: "{{ video.description }}" },
-        {% endfor %}
-    ];
-
-    const videoElement = document.getElementById('video-slider');
-    const captionElement = document.getElementById('caption');
-
-    if (videoElement && captionElement) {
-        let currentIndex = 0;
-
-        function changeVideo() {
-            if (videoSources.length === 0) return;
-            const video = videoSources[currentIndex];
-            
-            // Update the video src directly
-            videoElement.src = video.src;
-            
-            // Update the caption
-            captionElement.textContent = video.caption;
-            
-            // Load and play the new video
-            videoElement.load();
-            videoElement.play();
-            
-            // Move to the next video, loop back if at the end
-            currentIndex = (currentIndex + 1) % videoSources.length;
-        }
-
-        // Set the interval to change video every 5 seconds
-        setInterval(changeVideo, 5000);
-
-        // Initial call to set the first video and caption
-        changeVideo();
-    } else {
-        console.error('Video or caption element not found');
-    }
-});
+// Set an event listener to play the next video when the current one ends
+videos[currentVideo].addEventListener('ended', playNextVideo);

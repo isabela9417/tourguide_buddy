@@ -42,7 +42,6 @@
         <h3>Nature is our pride in <span>South Africa</span></h3>
         <p id="caption">Search for your destination, as it awaits you...</p>
     </div>
-
     <!-- the video container -->
     <div class="video-container">
         <video id="video-slider" loop autoplay muted>
@@ -53,18 +52,14 @@
                 <p>No videos available.</p>
             {% endif %}
         </video>
-
-        <!-- searching bar form -->
-<!-- searching bar form -->
-<form action="{% url 'get_suggestions' %}" method="POST" class="search-bar-container">
-    {% csrf_token %}
-    <input type="search" name="topic" id="search-bar" placeholder="Search Here..." required>
-    <label for="search-bar" class="bx bx-search-alt-2"></label>
-</form>
-
+		<!-- searching bar form -->
+		<form action="{% url 'get_suggestions' %}" method="POST" class="search-bar-container">
+		{% csrf_token %}
+			<input type="search" name="topic" id="search-bar" placeholder="Search Here..." required>
+			<label for="search-bar" class="bx bx-search-alt-2"></label>
+		</form>
     </div>
 </section>
-
 <!-- home section ends -->
 
 <!-- gallery section begins -->
@@ -205,18 +200,19 @@
 			 <img src="{% static 'images/istockphoto-1368005661-612x612.jpg' %}" alt="">
 		</div>
 		
-		<form action="">
+		<form action="{% url 'home' %}#contact" method="POST">
+			{% csrf_token %}
 			<div class="inputBox">
-				<input type="text" placeholder="name">
-				<input type="email" placeholder="email">
+				<input type="text" name="name" placeholder="name" required>
+				<input type="email" name="email" placeholder="email" required>
 			</div>
 
 			<div class="inputBox">
-				<input type="number" placeholder="contact number">
-				<input type="text" placeholder="subject">
+				<input type="number" name="contact-number" placeholder="contact-number" required>
+				<input type="text" name="subject" placeholder="subject" required>
 			</div>
 
-			<textarea placeholder="message" name="" id="" cols="30" rows="10"></textarea>
+			<textarea placeholder="message" name="message" id="message" cols="30" rows="10"></textarea>
 			<input type="submit" class="btn" value="send message">
 		</form>
 	</div>
@@ -234,19 +230,20 @@
 				You tell the site what's on your mind and we give you that in visual, 
 				so that your travelling will be simplified.</p>
 		</div>
+
 		<div class="box">
-			<h3>Provinces</h3>
-			<a href="{% url 'province_tourism_sites' 'Limpopo' %}">Limpopo</a>
-			<a href="{% url 'province_tourism_sites' 'Gauteng' %}">Gauteng</a>
-			<a href="{% url 'province_tourism_sites' 'KwaZulu-Natal' %}">KwaZulu-Natal</a>
-			<a href="{% url 'province_tourism_sites' 'Western Cape' %}">Western Cape</a>
-			<a href="{% url 'province_tourism_sites' 'Eastern Cape' %}">Eastern Cape</a>
-			<a href="{% url 'province_tourism_sites' 'Mpumalanga' %}">Mpumalanga</a>
-			<a href="{% url 'province_tourism_sites' 'Free State' %}">Free State</a>
-			<a href="{% url 'province_tourism_sites' 'North West' %}">North West</a>
-			<a href="{% url 'province_tourism_sites' 'Northern Cape' %}">Northern Cape</a>
+			<h3>Check for Each Province</h3>
+            <a href="{% url 'tourism_sites' 'Eastern Cape' %}">Eastern Cape</a>
+            <a href="{% url 'tourism_sites' 'Free State' %}">Free State</a>
+            <a href="{% url 'tourism_sites' 'Gauteng' %}">Gauteng</a>
+            <a href="{% url 'tourism_sites' 'KwaZulu-Natal' %}">KwaZulu-Natal</a>
+            <a href="{% url 'tourism_sites' 'Limpopo' %}">Limpopo</a>
+            <a href="{% url 'tourism_sites' 'Mpumalanga' %}">Mpumalanga</a>
+            <a href="{% url 'tourism_sites' 'Northern Cape' %}">Northern Cape</a>
+            <a href="{% url 'tourism_sites' 'North West' %}">North West</a>
+            <a href="{% url 'tourism_sites' 'Western Cape' %}">Western Cape</a>
 		</div>
-	
+
 		<div class="box">
 			<h3>quick links</h3>
 			<a href="#home">home</a>
@@ -255,24 +252,26 @@
 			<a href="#reviews">reviews</a>
 			<a href="#contact">contact</a>
 		</div>
+		
 		<div class="box">
 			<h3>follow us</h3>
-			<a href="#">facebook</a>
-			<a href="#">twitter/x</a>
-			<a href="#">instagram</a>
-			<a href="#">linkedin</a>
-			<a href="#">github</a>
+			<a href="https://www.facebook.com/isabela.tlhakudi">facebook</a>
+			<a href="https://x.com/shortgun94">twitter/x</a>
+			<a href="https://www.instagram.com/bellahshotz?igsh=OGQ5ZDc2ODk2ZA==">instagram</a>
+			<a href="https://www.linkedin.com/public-profile/settings?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_self_edit_contact-info%3Bj4SAmXycSAuukcTu%2FKQHDQ%3D%3D">linkedin</a>
+			<a href="https://github.com/isabela9417/tourguide_buddy/tree/main">github</a>
 		</div>
 
 	</div>
 	<h1 class="credit"> created by <span>Isabela Tlhakudi</span> | all rights reserved. 2024</h1>
  </section>
 
-</body>
+
 <!-- swiper js link -->
-	<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-	<!-- swiper js link -->
-	<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-	<!-- custom js file link -->
-	<script src="{% static 'javascript/script.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<!-- swiper js link -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<!-- custom js file link -->
+<script src="{% static 'javascript/script.js' %}"></script>
+</body>
 </html>

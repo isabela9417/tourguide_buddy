@@ -1,40 +1,133 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tourism Sites in {{ province.name }}</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}"> <!-- Link to your CSS -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Izzy TravelGuide</title>
+
+    <!-- swiper css link -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+    <!-- font awesome boxicons link -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- custom css file link -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/tourism-sites.css' %}">
+    <!-- swiperjs link -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+
 </head>
 <body>
-    <div class="container">
-        <h1>Tourism Sites in {{ province.name }}</h1>
-        <p><strong>Capital:</strong> {{ province.capitalCity }}</p>
-        <p><strong>Description:</strong> {{ province.description }}</p>
-
-        <ul>
+    <header>
+        <!-- icons -->
+        <div class='icons'>
+            <i class='bx bx-menu' id="menu-bar"></i>
+            <i class='bx bx-x' id="close-bar" style="display: none;"></i>
+        </div>
+        <!-- the navigation bar -->
+        <a href="{% url 'home' %}" class="logo"><span>I</span>zzy <span>T</span>our <span>G</span>uide</a>
+        <nav class="navbar">
+            <a href="{% url 'home' %}">home</a>
+			<a href="{% url 'home' %}#gallery">gallery</a>
+            <a href="{% url 'home' %}#services">services</a>
+            <a href="{% url 'home' %}#reviews">reviews</a>
+            <a href="{% url 'home' %}#contact">contact</a>
+        </nav>
+    </header>
+    <br><br><br><br>
+    <br><br>
+    <section class="tourism-sites" id="tourism-sites">
+        <div class="heading">
+            <h1>Tourism Sites in <span>{{ province.name }}</span></h1>
+        </div>
+        <div class="box-container">
+            <!-- Loop through the tourism sites -->
             {% for site in tourism_sites %}
-                <li>
-                    <h2>{{ site.name }}</h2>
-                    <p><strong>Address:</strong> {{ site.address }}</p>
+            <div class="box">
+                <!-- Display the site's image -->
+                {% if site.image %}
+                    <img src="{{ site.image.url }}" alt="{{ site.name }}">
+                {% else %}
+                    <img src="{% static 'images/placeholder.png' %}" alt="No image available">
+                {% endif %}
+                <div class="content">
+                    <!-- Display the site's name -->
+                    <h3><i class='bx bx-map'></i> {{ site.name }}</h3>
+                    <p><strong>Address:</strong> <a href="{{ site.address }}">On Google Maps</a></p>
                     <p><strong>Type:</strong> {{ site.site_type }}</p>
-                    <p><strong>Price:</strong> ${{ site.price }}</p>
+                    <p><strong>Price:</strong> R{{ site.price }}</p>
                     <p><strong>Description:</strong> {{ site.description }}</p>
                     {% if site.booking_link %}
-                        <a class="btn" href="{{ site.booking_link }}">Book Now</a>
+                        <a href="{{ site.booking_link }}" class="btn">Book Now</a>
                     {% endif %}
-                    {% if site.image %}
-                        <img src="{{ site.image.url }}" alt="{{ site.name }}" />
-                    {% else %}
-                        <img src="{% static 'images/placeholder.png' %}" alt="No image available" /> <!-- Placeholder -->
-                    {% endif %}
-                </li>
+                </div>
+            </div>
             {% empty %}
-                <li>No tourism sites found for this province.</li>
+            <!-- Handle the case where there are no tourism sites -->
+            <p>No tourism sites found for this province.</p>
             {% endfor %}
-        </ul>
+        </div>
+        <a href="{% url 'home' %}" class="btn">Back to Home</a>
+    </section>
+    <br>
 
-        <a href="{% url 'home' %}" class="back-button">Back to Home</a>
-    </div>
+<!-- footer section -->
+<section class="footer">
+
+	<div class="box-container">
+
+		<div class="box">
+			<h3>About us</h3>
+			<p>Travelling tour guide is  a travelling guide that gives you what you want. 
+				You tell the site what's on your mind and we give you that in visual, 
+				so that your travelling will be simplified.</p>
+		</div>
+
+        <div class="box">
+			<h3>Check for Each Province</h3>
+            <a href="{% url 'tourism_sites' 'Eastern Cape' %}">Eastern Cape</a>
+            <a href="{% url 'tourism_sites' 'Free State' %}">Free State</a>
+            <a href="{% url 'tourism_sites' 'Gauteng' %}">Gauteng</a>
+            <a href="{% url 'tourism_sites' 'KwaZulu-Natal' %}">KwaZulu-Natal</a>
+            <a href="{% url 'tourism_sites' 'Limpopo' %}">Limpopo</a>
+            <a href="{% url 'tourism_sites' 'Mpumalanga' %}">Mpumalanga</a>
+            <a href="{% url 'tourism_sites' 'Northern Cape' %}">Northern Cape</a>
+            <a href="{% url 'tourism_sites' 'North West' %}">North West</a>
+            <a href="{% url 'tourism_sites' 'Western Cape' %}">Western Cape</a>
+		</div>
+
+		<div class="box">
+			<h3>quick links</h3>
+			<a href="{% url 'home' %}">home</a>
+			<a href="{% url 'home' %}#gallery">gallery</a>
+            <a href="{% url 'home' %}#services">services</a>
+            <a href="{% url 'home' %}#reviews">reviews</a>
+            <a href="{% url 'home' %}#contact">contact</a>
+		</div>
+
+        <div class="box">
+            <h3>follow us</h3>
+            <a href="https://www.facebook.com/isabela.tlhakudi">facebook</a>
+            <a href="https://x.com/shortgun94">twitter/x</a>
+            <a href="https://www.instagram.com/bellahshotz?igsh=OGQ5ZDc2ODk2ZA==">instagram</a>
+            <a href="https://www.linkedin.com/public-profile/settings?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_self_edit_contact-info%3Bj4SAmXycSAuukcTu%2FKQHDQ%3D%3D">linkedin</a>
+            <a href="https://github.com/isabela9417/tourguide_buddy/tree/main">github</a>
+        </div>
+
+
+	</div>
+	<h1 class="credit"> created by <span>Isabela Tlhakudi</span> | all rights reserved. 2024</h1>
+ </section>
+
+
+
+ <!-- swiper js link -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<!-- swiper js link -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<!-- custom js file link -->
+<script src="{% static 'javascript/script.js' %}"></script>
 </body>
 </html>

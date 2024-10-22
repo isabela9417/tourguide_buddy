@@ -4,6 +4,13 @@ from decouple import config
 from dotenv import load_dotenv
 
 
+
+# API keys
+load_dotenv() 
+
+GOOGLE_PLACES_API_KEY = os.getenv('GOOGLE_PLACES_API_KEY')
+GROQ_API_KEY = os.getenv('GROQ_API_KEY')
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -66,11 +73,7 @@ WSGI_APPLICATION = 'tourguide_buddy.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# API keys
-load_dotenv() 
 
-GOOGLE_PLACES_API_KEY = os.getenv('GOOGLE_PLACES_API_KEY')
-GROQ_API_KEY = os.getenv('GROQ_API_KEY')
 
 DATABASES = {
     'default': {
@@ -79,6 +82,15 @@ DATABASES = {
     }
 }
 
+# email settings
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'isabelachana@gmail.com'
+EMAIL_HOST_PASSWORD = 'kugarlfqgrxtkgtj'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'isabelachana@gmail.com'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

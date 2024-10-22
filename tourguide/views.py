@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from .models import Video, MostVisitedSite, Province, TourismSite
 from django.urls import path
 import requests
+from django.core.mail import send_mail
+from decouple import config
 from django.conf import settings
 
 
@@ -69,15 +71,43 @@ def get_suggestions(request):
 
     return render(request, 'results.html', {'place_details': place_details})
 
+# contact us section
+def contact(request):
+    success_message = None  # Initialize success message
+
+    if request.method == "POST":
+        name = request.POST['name']
+        email = request.POST['email']
+        contact_number = request.POST['contact-number']
+        subject = request.POST['subject']
+        message = request.POST['message']
+
+        # List of email recipients
+        recipients = ['isabelachana@gmail.com', 'isabela.tlhakudi@gmail.com']
+
+        # Send email
+        send_mail(
+            subject,
+            f'Message from {name} ({contact_number}): {message}',
+            'settings.EMAIL_HOST_USER',
+            [email],
+            fail_silently=False
+        )
+
+        # Set the success message
+        success_message = f"{name}, your contact has been sent successfully."
+
+    # Render the contact section with the success message
+    return render(request, 'home.html', {'success_message': success_message})
+
 
 # query the provonces
-def province_tourism_sites(request, province_name):
-    
-    province_name = province_name.replace('-', ' ')
+def tourism_sites(request, province_name):
     province = get_object_or_404(Province, name=province_name)
-    tourism_sites = TourismSite.objects.filter(province=province)
+    tourism_sites = TourismSite.objects.filter(province=province)  # Filter by province
 
-    return render(request, 'province_tourism_sites.html', {
+    context = {
         'province': province,
-        'tourism_sites': tourism_sites
-    })
+        'tourism_sites': tourism_sites,
+    }
+    return render(request, 'tourism-sites.html', context)
